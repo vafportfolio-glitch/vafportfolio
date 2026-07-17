@@ -6,7 +6,7 @@ export default function CtaSection() {
   const reduce = useReducedMotion();
 
   return (
-    <section id="contact" className="relative overflow-hidden bg-black px-8 py-32">
+    <section id="contact" className="relative overflow-hidden bg-black px-4 py-24 sm:px-8 sm:py-32">
       {/* Background orbs */}
       <div className="pointer-events-none absolute inset-0">
         <div
@@ -30,10 +30,11 @@ export default function CtaSection() {
 
         <motion.h2
           {...(reduce ? {} : { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] } })}
-          className="mb-6 text-6xl font-black leading-none tracking-tight text-white lg:text-7xl"
+          className="mb-6 text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl"
         >
           Let&apos;s build something{" "}
           <span
+            className="inline-block break-words"
             style={{
               background: "linear-gradient(135deg,#37ca37,#188bf6)",
               WebkitBackgroundClip: "text",

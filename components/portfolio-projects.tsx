@@ -69,18 +69,15 @@ export default function PortfolioProjects() {
     <section id="work" className="relative bg-black px-8 py-24">
       <div className="mx-auto max-w-7xl">
         {/* Heading */}
-        <div className="relative mb-16 flex justify-center">
-          <h2 className="text-5xl font-black tracking-tight text-white">
-            Recent{" "}
-            <span className="relative inline-block">
-              Projects
-              <span
-                className="absolute -top-9 right-0 whitespace-nowrap text-2xl text-gray-500"
-                style={{ fontFamily: "var(--font-caveat)", transform: "rotate(3deg)" }}
-              >
-                hand-picked work
-              </span>
-            </span>
+        <div className="relative mb-16 flex flex-col items-center gap-1">
+          <span
+            className="text-2xl text-gray-500"
+            style={{ fontFamily: "var(--font-caveat)", transform: "rotate(-2deg)", display: "block" }}
+          >
+            from 2020 till today
+          </span>
+          <h2 className="text-4xl font-black tracking-tight text-white sm:text-5xl">
+            Recent Projects
           </h2>
         </div>
 
