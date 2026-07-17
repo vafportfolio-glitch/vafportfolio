@@ -61,17 +61,42 @@ export default function SunburstHero() {
         </svg>
       </motion.div>
 
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 z-10">
-        <p className="mb-1 px-8 text-xl leading-snug text-gray-400">
-          Howdy! Meet your trusted design partner,<br />
-          crafting strong brands for SaaS and Web3.
-        </p>
-        <h1
-          className="whitespace-nowrap font-black leading-none tracking-tight text-white"
-          style={{ fontSize: '9.2vw', paddingLeft: '2rem' }}
-        >
-          Project Portfolio
+      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-4 pt-20" style={{ fontFamily: "var(--font-outfit)" }}>
+        <h1 className="font-semibold leading-tight tracking-tight text-white mb-4" style={{ fontSize: '6vw' }}>
+          The Force Behind<br />Your Growth
         </h1>
+        <p className="max-w-2xl text-gray-400 text-lg leading-relaxed">
+          We help businesses scale faster with powerful automation, AI systems, and custom software integrations. From GoHighLevel bots to advanced AI workflows, VA FORCE is the team behind your operational growth.
+        </p>
+        <div className="flex items-center gap-4 mt-10">
+          {/* Primary */}
+          <a
+            href="#work"
+            className="group flex items-center gap-2.5 px-6 py-3 rounded-full text-sm font-medium text-white transition-all duration-300 hover:scale-105"
+            style={{ background: "linear-gradient(135deg, #37ca37, #188bf6)", boxShadow: "0 0 28px rgba(55,202,55,0.4)" }}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <path d="M8 21h8M12 17v4"/>
+            </svg>
+            See Our Work
+          </a>
+          {/* Secondary — glassy */}
+          <a
+            href="#contact"
+            className="group flex items-center gap-2.5 px-6 py-3 rounded-full text-sm font-medium text-white transition-all duration-300 hover:scale-105 hover:border-white/30"
+            style={{
+              background: "rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.15)",
+              backdropFilter: "blur(12px)",
+            }}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            Let's Connect
+          </a>
+        </div>
       </div>
     </section>
   );
