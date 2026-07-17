@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Millwork 2000 — Case Study Card</title>
+    <style>
+      :root {
+        --green: #37ca37;
+        --blue: #188bf6;
+        --brand-gradient: linear-gradient(135deg, #37ca37, #188bf6);
+        --brand-soft: rgba(24, 139, 246, 0.45);
+        --card-bg: #0c0a10;
+        --card-border-idle: #1a2a1a;
+        --text-muted: #9a94a3;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        padding: 40px 16px;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 660px;
+        border-radius: 20px;
+        border: 1.5px solid transparent;
+        background:
+          linear-gradient(#0c120c, #0c120c) padding-box,
+          linear-gradient(135deg, #1a2e1a, #0d1a2e) border-box;
+        overflow: hidden;
+        transition:
+          border-color 0.28s ease,
+          box-shadow 0.28s ease;
+        cursor: pointer;
+      }
+
+      .card:hover {
+        border-color: var(--blue);
+        box-shadow:
+          0 0 0 1px var(--brand-soft),
+          0 20px 40px -20px var(--brand-soft);
+      }
+
+      /* Tags */
+      .tags {
+        display: flex;
+        gap: 10px;
+        padding: 18px 22px 0 22px;
+      }
+      .tag {
+        background: #0e0b12;
+        border: 1px solid #1a3a1a;
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        padding: 7px 14px;
+        border-radius: 999px;
+      }
+
+      /* Image area */
+      .media {
+        position: relative;
+        margin: 16px 22px 0 22px;
+        border-radius: 14px;
+        overflow: hidden;
+        aspect-ratio: 16/9;
+        background: #0d1a0d;
+      }
+
+      .media-inner {
+        position: absolute;
+        inset: 0;
+      }
+
+      .browser-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 44px;
+        background: #f3f1ec;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        z-index: 2;
+      }
+      .brand-name {
+        font-weight: 800;
+        font-size: 14px;
+        color: #1a1a1a;
+        letter-spacing: 0.01em;
+      }
+      .nav-links {
+        display: flex;
+        gap: 22px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        color: #2a2a2a;
+      }
+      .nav-links span.active {
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+
+      .photo {
+        position: absolute;
+        inset: 0;
+        transition: transform 0.32s ease;
+        will-change: transform;
+      }
+
+      .photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+      }
+
+      .media:hover .photo {
+        transform: translateY(-8px);
+      }
+
+      .fab {
+        position: absolute;
+        right: 14px;
+        bottom: -40px;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: var(--brand-gradient);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition:
+          opacity 0.28s ease,
+          bottom 0.28s ease;
+        z-index: 3;
+        box-shadow: 0 8px 20px -6px rgba(24, 139, 246, 0.6);
+      }
+
+      .media:hover .fab {
+        opacity: 1;
+        bottom: 14px;
+      }
+
+      .fab svg {
+        width: 18px;
+        height: 18px;
+        stroke: #fff;
+      }
+
+      /* Body */
+      .body {
+        padding: 22px 26px 26px 26px;
+      }
+
+      .top-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .eyebrow {
+        background: var(--brand-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        margin: 0 0 6px 0;
+      }
+
+      .duration {
+        color: var(--text-muted);
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      h1.title {
+        color: #fff;
+        font-size: 26px;
+        font-weight: 800;
+        letter-spacing: 0.01em;
+        margin: 0 0 12px 0;
+      }
+
+      .desc {
+        color: var(--text-muted);
+        font-size: 14.5px;
+        line-height: 1.55;
+        margin: 0 0 22px 0;
+        max-width: 520px;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        background: #0a120a;
+        border: 1px solid #1a2e1a;
+        border-radius: 14px;
+        padding: 22px 10px;
+        margin-bottom: 22px;
+      }
+      .stat {
+        text-align: center;
+        padding: 0 6px;
+      }
+      .stat svg {
+        width: 20px;
+        height: 20px;
+        stroke: var(--blue);
+        margin-bottom: 8px;
+      }
+      .stat .num {
+        color: #fff;
+        font-size: 19px;
+        font-weight: 800;
+        margin-bottom: 4px;
+      }
+      .stat .label {
+        color: var(--text-muted);
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+
+      .quote {
+        border-left: 3px solid var(--green);
+        padding-left: 16px;
+        color: #c9c3ce;
+        font-size: 14px;
+        font-style: italic;
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      @media (max-width: 480px) {
+        .nav-links {
+          display: none;
+        }
+        .stats {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="tags">
+        <span class="tag">BRANDING</span>
+        <span class="tag">WEB DESIGN</span>
+      </div>
+
+      <div class="media">
+        <div class="media-inner">
+          <div class="photo">
+            <img
+              src="https://res.cloudinary.com/dmx22dkwy/image/upload/v1759188538/n5-2_mt3oqm.png"
+              alt="Millwork 2000 project"
+            />
+          </div>
+          <div class="fab">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="body">
+        <div class="top-row">
+          <div>
+            <p class="eyebrow">MILLWORK 2000</p>
+          </div>
+          <span class="duration">4 Months</span>
+        </div>
+
+        <h1 class="title">MILLWORK 2000</h1>
+        <p class="desc">
+          A custom website and digital presence project designed to improve
+          clarity, credibility, and user experience.
+        </p>
+
+        <div class="stats">
+          <div class="stat">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            <div class="num">4x</div>
+            <div class="label">BRAND RECOGNITION LIFT</div>
+          </div>
+          <div class="stat">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <div class="num">+90s</div>
+            <div class="label">AVG. TIME ON SITE</div>
+          </div>
+          <div class="stat">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+            <div class="num">140%</div>
+            <div class="label">QUALIFIED LEAD GROWTH</div>
+          </div>
+        </div>
+
+        <p class="quote">
+          "The Branding Zone completely transformed how our business shows up
+          online. Our leads doubled within 90 days."
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

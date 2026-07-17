@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sunburst Design</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #ffffff;
+      }
+      .canvas {
+        width: 100vw;
+        height: 100vh;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <svg
+      class="canvas"
+      viewBox="0 0 1800 900"
+      preserveAspectRatio="xMidYMid slice"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <linearGradient id="rayGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#e8940a" />
+          <stop offset="30%" stop-color="#ffcc00" />
+          <stop offset="60%" stop-color="#ffe98a" />
+          <stop offset="85%" stop-color="#ffffff" />
+          <stop offset="100%" stop-color="#ffffff" />
+        </linearGradient>
+        <linearGradient id="rayGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#ffd400" />
+          <stop offset="25%" stop-color="#fff066" />
+          <stop offset="55%" stop-color="#fffbe0" />
+          <stop offset="80%" stop-color="#ffffff" />
+          <stop offset="100%" stop-color="#ffffff" />
+        </linearGradient>
+        <linearGradient id="rayGrad3" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#f2a300" />
+          <stop offset="28%" stop-color="#ffd94d" />
+          <stop offset="60%" stop-color="#fff2b0" />
+          <stop offset="85%" stop-color="#ffffff" />
+          <stop offset="100%" stop-color="#ffffff" />
+        </linearGradient>
+        <linearGradient id="rayGrad4" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#ffc700" />
+          <stop offset="35%" stop-color="#ffe98a" />
+          <stop offset="70%" stop-color="#ffffff" />
+          <stop offset="100%" stop-color="#ffffff" />
+        </linearGradient>
+        <linearGradient id="rayGrad5" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#ffe14d" />
+          <stop offset="40%" stop-color="#fff6c9" />
+          <stop offset="75%" stop-color="#ffffff" />
+          <stop offset="100%" stop-color="#ffffff" />
+        </linearGradient>
+        <linearGradient id="rayGrad6" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#ffb84d" />
+          <stop offset="35%" stop-color="#ffe9a8" />
+          <stop offset="70%" stop-color="#ffffff" />
+          <stop offset="100%" stop-color="#ffffff" />
+        </linearGradient>
+      </defs>
+
+      <rect width="1800" height="900" fill="#ffffff" />
+
+      <!-- Origin point is off-canvas to the upper-left -->
+      <!-- Each ray shares its edge exactly with the next ray, so there is no white gap between them -->
+
+      <!-- Ray 1: widest, topmost -->
+      <polygon
+        points="-300,-150 -300,60 2200,-260 2200,-500"
+        fill="url(#rayGrad1)"
+      />
+
+      <!-- Ray 2 -->
+      <polygon
+        points="-300,60 -300,260 2200,-40 2200,-260"
+        fill="url(#rayGrad2)"
+      />
+
+      <!-- Ray 3 -->
+      <polygon
+        points="-300,260 -300,430 2200,140 2200,-40"
+        fill="url(#rayGrad3)"
+      />
+
+      <!-- Ray 4 -->
+      <polygon
+        points="-300,430 -300,560 2200,300 2200,140"
+        fill="url(#rayGrad4)"
+      />
+
+      <!-- Ray 5 -->
+      <polygon
+        points="-300,560 -300,670 2200,420 2200,300"
+        fill="url(#rayGrad5)"
+      />
+
+      <!-- Ray 6, thin trailing ray -->
+      <polygon
+        points="-300,670 -300,760 2200,520 2200,420"
+        fill="url(#rayGrad6)"
+      />
+    </svg>
+  </body>
+</html>
