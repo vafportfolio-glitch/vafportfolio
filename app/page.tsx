@@ -1,5 +1,3 @@
-import SunburstHero from "@/components/sunburst-hero";
-import ArrowHero from "@/components/arrow-hero";
 import TypingHero from "@/components/typing-hero";
 import MeetFounder from "@/components/meet-founder";
 import PortfolioProjects from "@/components/portfolio-projects";
@@ -10,8 +8,6 @@ import Footer from "@/components/footer";
 export default function Home() {
   return (
     <>
-      <SunburstHero />
-      <ArrowHero />
       <TypingHero />
       <MeetFounder />
       <PortfolioProjects />
