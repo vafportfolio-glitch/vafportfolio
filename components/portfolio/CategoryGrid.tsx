@@ -61,7 +61,7 @@ export default function CategoryGrid({ categories }: { categories: Category[] })
         >
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl" style={{ background: "#0a1a0a", border: "1px solid #1a2e1a" }}>
-              <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 stroke-[#37ca37]">
+              <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 stroke-[#FEC503]">
                 <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
               </svg>
             </div>
@@ -78,7 +78,7 @@ export default function CategoryGrid({ categories }: { categories: Category[] })
             onClick={() => handleOpenFolder(cat.id)}
             disabled={loadingFolderId !== null}
             className="mt-auto flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 disabled:opacity-50"
-            style={{ background: "linear-gradient(135deg,#37ca37,#188bf6)" }}
+            style={{ background: "#0098FD" }}
           >
             {loadingFolderId === cat.id ? (
               <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

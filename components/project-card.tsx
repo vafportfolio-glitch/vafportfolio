@@ -21,7 +21,7 @@ export interface ProjectCardProps {
 
 const icons = {
   users: (
-    <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 stroke-[#188bf6] mb-2">
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 stroke-[#0098FD] mb-2">
       <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
       <circle cx="9" cy="7" r="4" />
       <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
@@ -29,13 +29,13 @@ const icons = {
     </svg>
   ),
   eye: (
-    <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 stroke-[#188bf6] mb-2">
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 stroke-[#0098FD] mb-2">
       <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
       <circle cx="12" cy="12" r="3" />
     </svg>
   ),
   trending: (
-    <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 stroke-[#188bf6] mb-2">
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 stroke-[#0098FD] mb-2">
       <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
       <polyline points="17 6 23 6 23 12" />
     </svg>
@@ -59,12 +59,10 @@ export default function ProjectCard({
     <div
       className="w-full rounded-[20px] overflow-hidden cursor-pointer transition-all duration-300"
       style={{
-        border: "1.5px solid transparent",
-        background: cardHovered
-          ? "linear-gradient(#0c120c,#0c120c) padding-box, linear-gradient(135deg,#188bf6,#37ca37) border-box"
-          : "linear-gradient(#0c120c,#0c120c) padding-box, linear-gradient(135deg,#1a2e1a,#0d1a2e) border-box",
+        background: "#0c120c",
+        border: cardHovered ? "1.5px solid #FEC503" : "1.5px solid #1a2e1a",
         boxShadow: cardHovered
-          ? "0 0 0 1px rgba(24,139,246,0.45), 0 20px 40px -20px rgba(24,139,246,0.45)"
+          ? "0 0 0 1px rgba(254,197,3,0.45), 0 20px 40px -20px rgba(254,197,3,0.45)"
           : "none",
       }}
       onMouseEnter={() => setCardHovered(true)}
@@ -102,13 +100,13 @@ export default function ProjectCard({
         <div
           className="absolute right-[14px] z-10 w-[46px] h-[46px] rounded-full flex items-center justify-center transition-all duration-300"
           style={{
-            background: "linear-gradient(135deg,#37ca37,#188bf6)",
-            boxShadow: "0 8px 20px -6px rgba(24,139,246,0.6)",
+            background: "#FEC503",
+            boxShadow: "0 8px 20px -6px rgba(254,197,3,0.6)",
             opacity: mediaHovered ? 1 : 0,
             bottom: mediaHovered ? 14 : -40,
           }}
         >
-          <svg viewBox="0 0 24 24" fill="none" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-[18px] h-[18px] stroke-white">
+          <svg viewBox="0 0 24 24" fill="none" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-[18px] h-[18px] stroke-black">
             <line x1="7" y1="17" x2="17" y2="7" />
             <polyline points="7 7 17 7 17 17" />
           </svg>
@@ -120,12 +118,7 @@ export default function ProjectCard({
         <div className="flex justify-between items-start">
           <p
             className="text-[12px] font-extrabold tracking-[0.06em] mb-1.5"
-            style={{
-              background: "linear-gradient(135deg,#37ca37,#188bf6)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
+            style={{ color: "#0098FD" }}
           >
             {eyebrow}
           </p>
@@ -152,7 +145,7 @@ export default function ProjectCard({
         {/* Quote */}
         <p
           className="text-[14px] italic leading-[1.6] text-[#c9c3ce] pl-4"
-          style={{ borderLeft: "3px solid #37ca37" }}
+          style={{ borderLeft: "3px solid #FEC503" }}
         >
           {quote}
         </p>

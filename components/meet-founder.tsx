@@ -20,11 +20,11 @@ export default function MeetFounder() {
       <div className="mx-auto max-w-7xl">
         {/* Glassy card — tall enough to show full portrait */}
         <div
-          className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl overflow-hidden shadow-[0_0_80px_rgba(55,202,55,0.06),0_0_80px_rgba(24,139,246,0.06)]"
+          className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl overflow-hidden shadow-[0_0_80px_rgba(0,152,253,0.06),0_0_80px_rgba(254,197,3,0.06)]"
           style={{ minHeight: 680 }}
         >
           {/* inner tint */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#37ca37]/5 via-transparent to-[#188bf6]/5" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#0098FD]/5 via-transparent to-[#FEC503]/5" />
 
           <div className="relative grid h-full grid-cols-1 lg:grid-cols-2" style={{ minHeight: 680 }}>
             {/* LEFT — text, vertically centred */}
@@ -32,13 +32,7 @@ export default function MeetFounder() {
               <motion.p
                 {...fadeUp(0)}
                 className="mb-2 text-2xl"
-                style={{
-                  fontFamily: "var(--font-caveat)",
-                  background: "linear-gradient(135deg,#37ca37,#188bf6)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
+                style={{ fontFamily: "var(--font-caveat)", color: "#FEC503" }}
               >
                 Meet the Founder
               </motion.p>

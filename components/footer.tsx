@@ -1,5 +1,8 @@
 "use client";
 
+const LOGO_SRC =
+  "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/XgKDe6KOSdIG9IWlQxy3/media/694591cc8cae8f7688f413a5.png";
+
 export default function Footer() {
   const year = new Date().getFullYear();
 
@@ -9,7 +12,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
           {/* Brand */}
           <div>
-            <p className="mb-3 text-lg font-black tracking-tight text-white">VA Force</p>
+            <img src={LOGO_SRC} alt="VA Force" className="mb-3 h-9 w-auto" />
             <p className="max-w-[30ch] text-sm leading-relaxed text-gray-500">
               Automation, software, and brand design for businesses that want to grow without the noise.
             </p>
@@ -20,9 +23,10 @@ export default function Footer() {
             <p className="mb-4 text-xs font-bold uppercase tracking-[0.12em] text-gray-600">Navigate</p>
             <ul className="space-y-2.5">
               {[
-                { label: "Work", id: "work" },
                 { label: "Story", id: "founder" },
-                { label: "Contact", id: "contact" },
+                { label: "Work", id: "work" },
+                { label: "Testimonials", id: "testimonials" },
+                { label: "Connect", id: "contact" },
               ].map(({ label, id }) => (
                 <li key={id}>
                   <a

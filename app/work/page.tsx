@@ -37,9 +37,7 @@ export default async function WorkPage() {
         <div className="mb-16">
           <h1 className="text-6xl font-black leading-none tracking-tight text-white lg:text-7xl">
             Our{" "}
-            <span style={{ background: "linear-gradient(135deg,#37ca37,#188bf6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-              Work
-            </span>
+            <span style={{ color: "#FEC503" }}>Work</span>
           </h1>
         </div>
 

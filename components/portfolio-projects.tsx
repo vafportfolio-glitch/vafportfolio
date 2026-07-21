@@ -104,19 +104,18 @@ export default function PortfolioProjects() {
         <div className="mt-16 flex justify-center">
           <a
             href="/work"
-            className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full px-8 py-4 text-sm font-bold text-white transition-all duration-300"
-            style={{
-              background: "linear-gradient(#0c120c,#0c120c) padding-box, linear-gradient(135deg,#37ca37,#188bf6) border-box",
-              border: "1.5px solid transparent",
-            }}
+            className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full px-8 py-4 text-sm font-bold transition-colors duration-300"
+            style={{ background: "#FEC503" }}
           >
             <span
               className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-              style={{ background: "linear-gradient(135deg,#37ca37,#188bf6)" }}
+              style={{ background: "#0098FD" }}
             />
-            <span className="relative z-10 uppercase tracking-[0.12em]">View All Projects</span>
-            <span className="relative z-10 flex h-7 w-7 items-center justify-center rounded-full bg-white/10 transition-all duration-300 group-hover:bg-white/20 group-hover:translate-x-1">
-              <svg viewBox="0 0 24 24" fill="none" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 stroke-white">
+            <span className="relative z-10 uppercase tracking-[0.12em] text-black transition-colors duration-300 group-hover:text-white">
+              View All Projects
+            </span>
+            <span className="relative z-10 flex h-7 w-7 items-center justify-center rounded-full bg-black/10 transition-all duration-300 group-hover:bg-white/20 group-hover:translate-x-2">
+              <svg viewBox="0 0 24 24" fill="none" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 stroke-black transition-colors duration-300 group-hover:stroke-white">
                 <line x1="5" y1="12" x2="19" y2="12" />
                 <polyline points="12 5 19 12 12 19" />
               </svg>
