@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <TypingHero />
-      <MeetFounder />
+      {/* <MeetFounder /> */}
       <PortfolioProjects />
       <TechStack />
       <Testimonials />
