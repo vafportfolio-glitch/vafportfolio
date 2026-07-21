@@ -92,7 +92,7 @@ export default function TypingHero() {
       className="relative w-full bg-black lg:h-screen lg:overflow-hidden"
       style={{ fontFamily: "var(--font-outfit)" }}
     >
-      <div className="flex flex-col lg:flex-row lg:absolute lg:inset-0 items-center gap-6 px-6 sm:px-10 lg:px-20 pt-48 pb-12 lg:pt-0 lg:pb-0">
+      <div className="flex flex-col lg:flex-row lg:absolute lg:inset-0 items-center gap-6 px-6 sm:px-10 lg:px-20 pt-48 pb-12 lg:pt-24 lg:pb-0">
 
         {/* ── LEFT — text ── */}
         <div className="flex flex-col justify-center w-full lg:w-1/2 shrink-0">
