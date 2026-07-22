@@ -173,6 +173,7 @@ export default function TypingHero() {
                   backdropFilter: "blur(12px)",
                   padding: "0.05em 0.4em",
                   whiteSpace: "nowrap",
+                  color: active.glow,
                 }}
               >
                 {typedText}

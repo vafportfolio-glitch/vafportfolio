@@ -26,12 +26,23 @@ export default function FolderGrid({ folders }: { folders: Folder[] }) {
       {folders.map((folder) => (
         <div
           key={folder.id}
-          className="rounded-[20px] p-6 flex flex-col gap-4"
-          style={{ background: "#0c120c", border: "1.5px solid #1a2e1a" }}
+          className="relative rounded-[20px] p-6 flex flex-col gap-4"
+          style={{
+            background: "rgba(255,255,255,0.03)",
+            border: "1px solid rgba(255,255,255,0.2)",
+            backdropFilter: "blur(20px)",
+            boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
+          }}
         >
+          {/* top shimmer — same as the search bar / navbar */}
+          <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl" style={{ background: "#0a1a0a", border: "1px solid #1a2e1a" }}>
-              <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 stroke-[#0098FD]">
+            <div
+              className="flex h-10 w-10 items-center justify-center rounded-xl"
+              style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(10px)" }}
+            >
+              <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 stroke-white">
                 <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
               </svg>
             </div>
@@ -41,8 +52,12 @@ export default function FolderGrid({ folders }: { folders: Folder[] }) {
           <button
             onClick={() => handleOpenFolder(folder.id)}
             disabled={loadingFolderId !== null}
-            className="mt-auto flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 disabled:opacity-50"
-            style={{ background: "#0098FD" }}
+            className="mt-auto flex cursor-pointer items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            style={{
+              background: "rgba(0,152,253,0.18)",
+              border: "1px solid rgba(0,152,253,0.4)",
+              backdropFilter: "blur(10px)",
+            }}
           >
             {loadingFolderId === folder.id ? (
               <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

@@ -112,12 +112,12 @@ export default function TechStack() {
           >
             <defs>
               <linearGradient id="ts-gradL" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#0098FD" />
-                <stop offset="100%" stopColor="#FEC503" />
+                <stop offset="0%" stopColor="#188bf6" />
+                <stop offset="100%" stopColor="#37ca37" />
               </linearGradient>
               <linearGradient id="ts-gradR" x1="100%" y1="0%" x2="0%" y2="0%">
-                <stop offset="0%" stopColor="#0098FD" />
-                <stop offset="100%" stopColor="#FEC503" />
+                <stop offset="0%" stopColor="#188bf6" />
+                <stop offset="100%" stopColor="#37ca37" />
               </linearGradient>
               <filter
                 id="ts-dotGlow"
@@ -156,7 +156,7 @@ export default function TechStack() {
               y1="340"
               x2="690"
               y2="340"
-              stroke="#0098FD"
+              stroke="#188bf6"
               strokeWidth="1.5"
               strokeLinecap="round"
               opacity="0.45"
@@ -166,7 +166,7 @@ export default function TechStack() {
               y1="560"
               x2="690"
               y2="560"
-              stroke="#FEC503"
+              stroke="#37ca37"
               strokeWidth="1.5"
               strokeLinecap="round"
               opacity="0.45"
@@ -196,7 +196,7 @@ export default function TechStack() {
               y1="340"
               x2="1090"
               y2="340"
-              stroke="#0098FD"
+              stroke="#188bf6"
               strokeWidth="1.5"
               strokeLinecap="round"
               opacity="0.45"
@@ -206,7 +206,7 @@ export default function TechStack() {
               y1="560"
               x2="1090"
               y2="560"
-              stroke="#FEC503"
+              stroke="#37ca37"
               strokeWidth="1.5"
               strokeLinecap="round"
               opacity="0.45"
@@ -218,7 +218,7 @@ export default function TechStack() {
             {!reduce && (
               <>
                 {/* LEFT row-1 — OUTER group */}
-                <circle r="5" fill="#0098FD" filter="url(#ts-dotGlow)">
+                <circle r="5" fill="#188bf6" filter="url(#ts-dotGlow)">
                   <animateMotion
                     dur={OUTER_DUR}
                     begin={OUTER_BEGIN}
@@ -236,7 +236,7 @@ export default function TechStack() {
                 </circle>
 
                 {/* LEFT row-4 — OUTER group */}
-                <circle r="5" fill="#0098FD" filter="url(#ts-dotGlow)">
+                <circle r="5" fill="#37ca37" filter="url(#ts-dotGlow)">
                   <animateMotion
                     dur={OUTER_DUR}
                     begin={OUTER_BEGIN}
@@ -254,7 +254,7 @@ export default function TechStack() {
                 </circle>
 
                 {/* RIGHT row-1 — OUTER group */}
-                <circle r="5" fill="#0098FD" filter="url(#ts-dotGlow)">
+                <circle r="5" fill="#188bf6" filter="url(#ts-dotGlow)">
                   <animateMotion
                     dur={OUTER_DUR}
                     begin={OUTER_BEGIN}
@@ -272,7 +272,7 @@ export default function TechStack() {
                 </circle>
 
                 {/* RIGHT row-4 — OUTER group */}
-                <circle r="5" fill="#0098FD" filter="url(#ts-dotGlow)">
+                <circle r="5" fill="#37ca37" filter="url(#ts-dotGlow)">
                   <animateMotion
                     dur={OUTER_DUR}
                     begin={OUTER_BEGIN}
@@ -290,7 +290,7 @@ export default function TechStack() {
                 </circle>
 
                 {/* LEFT row-2 — INNER group */}
-                <circle r="5" fill="#0098FD" filter="url(#ts-dotGlow)">
+                <circle r="5" fill="#188bf6" filter="url(#ts-dotGlow)">
                   <animateMotion
                     dur={INNER_DUR}
                     begin={INNER_BEGIN}
@@ -308,7 +308,7 @@ export default function TechStack() {
                 </circle>
 
                 {/* LEFT row-3 — INNER group */}
-                <circle r="5" fill="#0098FD" filter="url(#ts-dotGlow)">
+                <circle r="5" fill="#37ca37" filter="url(#ts-dotGlow)">
                   <animateMotion
                     dur={INNER_DUR}
                     begin={INNER_BEGIN}
@@ -326,7 +326,7 @@ export default function TechStack() {
                 </circle>
 
                 {/* RIGHT row-2 — INNER group */}
-                <circle r="5" fill="#0098FD" filter="url(#ts-dotGlow)">
+                <circle r="5" fill="#188bf6" filter="url(#ts-dotGlow)">
                   <animateMotion
                     dur={INNER_DUR}
                     begin={INNER_BEGIN}
@@ -344,7 +344,7 @@ export default function TechStack() {
                 </circle>
 
                 {/* RIGHT row-3 — INNER group */}
-                <circle r="5" fill="#0098FD" filter="url(#ts-dotGlow)">
+                <circle r="5" fill="#37ca37" filter="url(#ts-dotGlow)">
                   <animateMotion
                     dur={INNER_DUR}
                     begin={INNER_BEGIN}
@@ -368,7 +368,7 @@ export default function TechStack() {
           {LEFT_ICONS.map((icon, i) => (
             <div
               key={`left-${i}`}
-              className="absolute flex items-center justify-center rounded-[18%] border border-[#2c2c33] bg-white transition-all duration-300 hover:border-[#FEC503] hover:shadow-[0_0_24px_rgba(254,197,3,0.3)]"
+              className="absolute flex items-center justify-center rounded-[18%] border border-[#2c2c33] bg-white transition-all duration-300 hover:border-[#37ca37] hover:shadow-[0_0_24px_rgba(55,202,55,0.3)]"
               style={{
                 width: "6.3%",
                 aspectRatio: "1/1",
@@ -394,7 +394,7 @@ export default function TechStack() {
                   width: 8,
                   height: 8,
                   borderRadius: "50%",
-                  background: "#0098FD",
+                  background: i < 2 ? "#188bf6" : "#37ca37",
                   opacity: i === 0 || i === 3 ? 1 : 0.5,
                 }}
               />
@@ -405,7 +405,7 @@ export default function TechStack() {
           {RIGHT_ICONS.map((icon, i) => (
             <div
               key={`right-${i}`}
-              className="absolute flex items-center justify-center rounded-[18%] border border-[#2c2c33] bg-white transition-all duration-300 hover:border-[#0098FD] hover:shadow-[0_0_24px_rgba(0,152,253,0.3)]"
+              className="absolute flex items-center justify-center rounded-[18%] border border-[#2c2c33] bg-white transition-all duration-300 hover:border-[#188bf6] hover:shadow-[0_0_24px_rgba(24,139,246,0.3)]"
               style={{
                 width: "6.3%",
                 aspectRatio: "1/1",
@@ -431,7 +431,7 @@ export default function TechStack() {
                   width: 8,
                   height: 8,
                   borderRadius: "50%",
-                  background: "#0098FD",
+                  background: i < 2 ? "#188bf6" : "#37ca37",
                   opacity: i === 0 || i === 3 ? 1 : 0.5,
                 }}
               />
@@ -454,7 +454,7 @@ export default function TechStack() {
               className="flex h-full w-full items-center justify-center rounded-full"
               style={{
                 background:
-                  "radial-gradient(circle, rgba(254,197,3,0.18) 0%, rgba(0,152,253,0.06) 60%, transparent 75%)",
+                  "radial-gradient(circle, rgba(55,202,55,0.15) 0%, rgba(24,139,246,0.05) 60%, transparent 75%)",
               }}
             >
               <div
@@ -462,9 +462,10 @@ export default function TechStack() {
                 style={{
                   width: "78%",
                   height: "78%",
-                  background: "#FEC503",
+                  background:
+                    "linear-gradient(135deg, #37ca37 0%, #188bf6 100%)",
                   boxShadow:
-                    "0 0 55px rgba(254,197,3,0.45), 0 0 110px rgba(0,152,253,0.25)",
+                    "0 0 55px rgba(55,202,55,0.45), 0 0 110px rgba(24,139,246,0.25)",
                 }}
               >
                 <div
