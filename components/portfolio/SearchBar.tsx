@@ -6,12 +6,16 @@ interface SearchBarProps {
   value: string;
   onChange: (v: string) => void;
   placeholders: string[];
+  disabled?: boolean;
+  disabledMessage?: string;
 }
 
 export default function SearchBar({
   value,
   onChange,
   placeholders,
+  disabled = false,
+  disabledMessage = "Search disabled",
 }: SearchBarProps) {
   const [displayed, setDisplayed] = useState("");
   const [phIndex, setPhIndex] = useState(0);
@@ -21,7 +25,7 @@ export default function SearchBar({
 
   // Typing effect for placeholder
   useEffect(() => {
-    if (value) return; // stop animation when user is typing
+    if (value || disabled) return; // stop animation when user is typing or search is disabled
     const current = placeholders[phIndex];
 
     if (typing) {
@@ -48,15 +52,16 @@ export default function SearchBar({
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
-  }, [displayed, typing, phIndex, value, placeholders]);
+  }, [displayed, typing, phIndex, value, placeholders, disabled]);
 
   return (
     <div
-      className="relative flex items-center w-full max-w-lg rounded-full px-5 py-2.5 transition-all duration-300 focus-within:border-white/30 shadow-[0_4px_16px_rgba(0,0,0,0.4)]"
+      className="relative flex h-11 items-center w-full max-w-lg rounded-full px-5 transition-all duration-300 focus-within:border-white/30 shadow-[0_4px_16px_rgba(0,0,0,0.4)]"
       style={{
         background: "rgba(255,255,255,0.03)",
         border: "1px solid rgba(255,255,255,0.2)",
         backdropFilter: "blur(20px)",
+        opacity: disabled ? 0.5 : 1,
       }}
     >
       {/* top shimmer — same as navbar */}
@@ -81,15 +86,22 @@ export default function SearchBar({
           type="text"
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full bg-transparent text-sm text-white outline-none placeholder-transparent"
+          disabled={disabled}
+          className="w-full bg-transparent text-sm text-white outline-none placeholder-transparent disabled:cursor-not-allowed"
           spellCheck={false}
         />
-        {/* Animated placeholder — only shown when input is empty */}
-        {!value && (
+        {/* Static message while disabled, animated placeholder otherwise (only when input is empty) */}
+        {disabled ? (
           <span className="pointer-events-none absolute inset-0 flex items-center text-sm text-gray-500 select-none">
-            Try &quot;{displayed}
-            <span className="animate-pulse">|</span>&quot;
+            {disabledMessage}
           </span>
+        ) : (
+          !value && (
+            <span className="pointer-events-none absolute inset-0 flex items-center text-sm text-gray-500 select-none">
+              Try &quot;{displayed}
+              <span className="animate-pulse">|</span>&quot;
+            </span>
+          )
         )}
       </div>
 

@@ -13,16 +13,24 @@ interface Category {
   fileCount: number;
 }
 
+const NICHE_CATEGORY_NAME = "niche-specific systems";
+
 export default function CategoryGrid({ categories }: { categories: Category[] }) {
   const router = useRouter();
   const [loadingFolderId, setLoadingFolderId] = useState<string | null>(null);
   const [query, setQuery] = useState("");
+  const [nicheFirst, setNicheFirst] = useState(false);
 
   const placeholders = categories.map((c) => c.name);
 
   const filtered = query.trim()
     ? categories.filter((c) => c.name.toLowerCase().includes(query.toLowerCase()))
     : categories;
+
+  // When the toggle is on, show only the niche-specific category — hide everything else.
+  const displayed = nicheFirst
+    ? filtered.filter((c) => c.name.toLowerCase().includes(NICHE_CATEGORY_NAME))
+    : filtered;
 
   async function handleOpenFolder(folderId: string) {
     setLoadingFolderId(folderId);
@@ -41,19 +49,55 @@ export default function CategoryGrid({ categories }: { categories: Category[] })
 
   return (
     <div>
-      <div className="mb-8 flex items-center justify-between">
-        <SearchBar value={query} onChange={setQuery} placeholders={placeholders.length ? placeholders : ["Search folders..."]} />
-        <p className="ml-6 shrink-0 text-sm text-gray-500">
-          {filtered.length} {filtered.length === 1 ? "category" : "categories"}
+      <div className="mb-8 flex flex-wrap items-center gap-4">
+        <SearchBar
+          value={query}
+          onChange={setQuery}
+          placeholders={placeholders.length ? placeholders : ["Search folders..."]}
+          disabled={nicheFirst}
+          disabledMessage="Turn off the Niche Systems toggle to search"
+        />
+
+        <button
+          onClick={() => {
+            setQuery("");
+            setNicheFirst((v) => !v);
+          }}
+          className="flex h-11 shrink-0 items-center gap-2 rounded-full px-4 text-xs font-medium transition-all duration-300"
+          style={{
+            background: nicheFirst ? "rgba(0,152,253,0.15)" : "rgba(255,255,255,0.03)",
+            border: nicheFirst ? "1px solid rgba(0,152,253,0.4)" : "1px solid rgba(255,255,255,0.2)",
+            backdropFilter: "blur(20px)",
+            color: nicheFirst ? "#0098FD" : "rgba(255,255,255,0.7)",
+          }}
+        >
+          <span
+            className="relative inline-flex h-4 w-7 shrink-0 items-center rounded-full transition-colors duration-300"
+            style={{ background: nicheFirst ? "#0098FD" : "rgba(255,255,255,0.2)" }}
+          >
+            <span
+              className="inline-block h-3 w-3 rounded-full bg-white transition-transform duration-300"
+              style={{ transform: nicheFirst ? "translateX(14px)" : "translateX(2px)" }}
+            />
+          </span>
+          Niche Systems
+        </button>
+
+        <p className="ml-auto shrink-0 text-sm text-gray-500">
+          {displayed.length} {displayed.length === 1 ? "category" : "categories"}
           {query && ` for "${query}"`}
         </p>
       </div>
 
-      {filtered.length === 0 ? (
-        <p className="text-gray-500 text-sm">No folders match &quot;{query}&quot;</p>
+      {displayed.length === 0 ? (
+        <p className="text-gray-500 text-sm">
+          {nicheFirst
+            ? "No niche-specific systems category found."
+            : `No folders match "${query}"`}
+        </p>
       ) : (
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {filtered.map((cat) => (
+      {displayed.map((cat) => (
         <div
           key={cat.id}
           className="relative rounded-[20px] p-6 flex flex-col gap-4 transition-all duration-300"
