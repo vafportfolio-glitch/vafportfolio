@@ -95,22 +95,6 @@ export default function ProjectCard({
         >
           <img src={image} alt={title} className="w-full h-full object-cover object-center block" />
         </div>
-
-        {/* FAB arrow */}
-        <div
-          className="absolute right-[14px] z-10 w-[46px] h-[46px] rounded-full flex items-center justify-center transition-all duration-300"
-          style={{
-            background: "#FEC503",
-            boxShadow: "0 8px 20px -6px rgba(254,197,3,0.6)",
-            opacity: mediaHovered ? 1 : 0,
-            bottom: mediaHovered ? 14 : -40,
-          }}
-        >
-          <svg viewBox="0 0 24 24" fill="none" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-[18px] h-[18px] stroke-black">
-            <line x1="7" y1="17" x2="17" y2="7" />
-            <polyline points="7 7 17 7 17 17" />
-          </svg>
-        </div>
       </div>
 
       {/* Body */}
