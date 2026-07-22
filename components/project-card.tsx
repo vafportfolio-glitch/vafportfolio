@@ -93,7 +93,7 @@ export default function ProjectCard({
           className="absolute inset-0 transition-transform duration-300 ease-out will-change-transform"
           style={{ transform: mediaHovered ? "translateY(-8px)" : "translateY(0)" }}
         >
-          <img src={image} alt={title} className="w-full h-full object-cover object-center block" />
+          <img src={image} alt={title} className="w-full h-full object-contain object-center block" />
         </div>
       </div>
 
