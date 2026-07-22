@@ -1,5 +1,6 @@
 "use client";
 
+import Script from "next/script";
 import { motion, useReducedMotion } from "motion/react";
 
 export default function CtaSection() {
@@ -7,21 +8,38 @@ export default function CtaSection() {
 
   return (
     <section id="contact" className="relative bg-black px-8 py-14">
+      <style>{`
+        .cta-form-scroll::-webkit-scrollbar {
+          width: 8px;
+        }
+        .cta-form-scroll::-webkit-scrollbar-track {
+          background: rgba(255,255,255,0.05);
+          border-radius: 8px;
+        }
+        .cta-form-scroll::-webkit-scrollbar-thumb {
+          background: #3d3d3d;
+          border-radius: 8px;
+        }
+        .cta-form-scroll::-webkit-scrollbar-thumb:hover {
+          background: #555555;
+        }
+      `}</style>
       <div className="mx-auto max-w-7xl">
         <div
           className="relative overflow-hidden rounded-3xl border border-white/10 px-6 py-10 sm:px-10 sm:py-12 lg:px-14"
           style={{ background: "#0c0c0c" }}
         >
-          {/* soft multi-brand glow, bleeding off the right edge — echoes the rest of the site's dark+glow language */}
+          {/* soft multi-brand glow, bleeding off the right edge — only meaningful once the two-column layout kicks in at lg+ */}
           <div
-            className="pointer-events-none absolute inset-y-0 right-0 w-[60%]"
+            className="pointer-events-none absolute inset-y-0 right-0 hidden w-[60%] lg:block"
             style={{
               background:
                 "radial-gradient(circle at 100% 50%, rgba(0,152,253,0.35) 0%, rgba(0,208,1,0.2) 35%, rgba(254,197,3,0.12) 55%, transparent 75%)",
             }}
           />
 
-          <div className="relative max-w-xl">
+          <div className="relative flex flex-col gap-10 lg:flex-row lg:items-center">
+          <div className="max-w-xl lg:w-1/2">
             <motion.p
               {...(reduce ? {} : { initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } })}
               className="mb-4 text-lg"
@@ -90,8 +108,41 @@ export default function CtaSection() {
               ))}
             </motion.div>
           </div>
+
+          {/* Embedded form — right side */}
+          <motion.div
+            {...(reduce ? {} : { initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] } })}
+            className="cta-form-scroll w-full rounded-2xl lg:w-1/2"
+            style={{
+              height: 717,
+              maxHeight: "80vh",
+              overflowY: "auto",
+              scrollbarWidth: "thin",
+              scrollbarColor: "#3d3d3d rgba(255,255,255,0.05)",
+            }}
+          >
+            <iframe
+              src="https://link.vaforce.us/widget/form/VDcZu7SZnztkvJBtP8TP"
+              style={{ width: "100%", height: "100%", border: "none", borderRadius: "8px" }}
+              id="inline-VDcZu7SZnztkvJBtP8TP"
+              data-layout="{'id':'INLINE'}"
+              data-trigger-type="alwaysShow"
+              data-trigger-value=""
+              data-activation-type="alwaysActivated"
+              data-activation-value=""
+              data-deactivation-type="neverDeactivate"
+              data-deactivation-value=""
+              data-form-name="Form 7"
+              data-height="717"
+              data-layout-iframe-id="inline-VDcZu7SZnztkvJBtP8TP"
+              data-form-id="VDcZu7SZnztkvJBtP8TP"
+              title="Form 7"
+            />
+          </motion.div>
+          </div>
         </div>
       </div>
+      <Script src="https://link.vaforce.us/js/form_embed.js" strategy="lazyOnload" />
     </section>
   );
 }

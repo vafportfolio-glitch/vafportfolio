@@ -23,15 +23,20 @@ export default function Footer() {
             <p className="mb-4 text-xs font-bold uppercase tracking-[0.12em] text-gray-600">Navigate</p>
             <ul className="space-y-2.5">
               {[
-                { label: "Story", id: "founder" },
+                { label: "Home", id: "home" },
                 { label: "Work", id: "work" },
                 { label: "Testimonials", id: "testimonials" },
                 { label: "Connect", id: "contact" },
               ].map(({ label, id }) => (
                 <li key={id}>
                   <a
-                    href={`/#${id}`}
+                    href={id === "home" ? "/" : `/#${id}`}
                     onClick={(e) => {
+                      if (id === "home") {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                        return;
+                      }
                       const el = document.getElementById(id);
                       if (el) { e.preventDefault(); el.scrollIntoView({ behavior: "smooth" }); }
                     }}

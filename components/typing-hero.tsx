@@ -211,6 +211,12 @@ export default function TypingHero() {
           >
             <a
               href="#work"
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .getElementById("work")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
               className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-medium text-black transition-all duration-300 hover:scale-105"
               style={{
                 background: "#FEC503",
@@ -231,7 +237,7 @@ export default function TypingHero() {
                 <rect x="2" y="3" width="20" height="14" rx="2" />
                 <path d="M8 21h8M12 17v4" />
               </svg>
-              See Our Work
+              See Recent Projects
             </a>
             <a
               href="#contact"
@@ -378,7 +384,10 @@ export default function TypingHero() {
               style={{
                 background: "rgba(255,255,255,0.03)",
                 border: "1px solid rgba(255,255,255,0.07)",
-                gridColumn: isOtherCatsOdd && i === otherCats.length - 1 ? "1 / -1" : undefined,
+                gridColumn:
+                  isOtherCatsOdd && i === otherCats.length - 1
+                    ? "1 / -1"
+                    : undefined,
               }}
             >
               <motion.div

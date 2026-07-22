@@ -8,7 +8,7 @@ const LOGO_SRC =
   "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/XgKDe6KOSdIG9IWlQxy3/media/694591cc8cae8f7688f413a5.png";
 
 const links = [
-  { id: "founder", label: "Story" },
+  { id: "home", label: "Home" },
   { id: "work", label: "Work" },
   { id: "testimonials", label: "Testimonials" },
   { id: "contact", label: "Connect" },
@@ -38,7 +38,11 @@ export default function Navbar() {
     setOpen(false);
     if (pathname === "/") {
       e.preventDefault();
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      if (id === "home") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
@@ -66,7 +70,7 @@ export default function Navbar() {
             {links.map((link) => (
               <a
                 key={link.id}
-                href={`/#${link.id}`}
+                href={link.id === "home" ? "/" : `/#${link.id}`}
                 onClick={(e) => scrollTo(e, link.id)}
                 className="rounded-lg px-3 py-2.5 text-sm font-medium text-white/80 transition-colors hover:bg-white/[0.06] hover:text-white"
               >
@@ -74,11 +78,11 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href="/#contact"
-              onClick={(e) => scrollTo(e, "contact")}
+              href="/work"
+              onClick={() => setOpen(false)}
               className="mt-2 rounded-full bg-white px-5 py-2.5 text-center text-sm font-semibold text-black"
             >
-              Start Project
+              Explore Work
             </a>
           </div>
         )}
@@ -100,7 +104,7 @@ export default function Navbar() {
             {links.map((link) => (
               <li key={link.id}>
                 <a
-                  href={`/#${link.id}`}
+                  href={link.id === "home" ? "/" : `/#${link.id}`}
                   onClick={(e) => scrollTo(e, link.id)}
                   className="rounded-lg px-3 py-2 text-sm font-medium text-white/80 transition-colors hover:bg-white/[0.06] hover:text-white cursor-pointer"
                 >
@@ -112,11 +116,10 @@ export default function Navbar() {
         </div>
 
         <a
-          href="/#contact"
-          onClick={(e) => scrollTo(e, "contact")}
+          href="/work"
           className="shrink-0 rounded-full bg-white px-5 py-2 text-sm font-semibold text-black shadow-sm transition-all hover:bg-white/90 active:scale-95 cursor-pointer"
         >
-          Start Project
+          Explore Work
         </a>
       </div>
     </nav>
