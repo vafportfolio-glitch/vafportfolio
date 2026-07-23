@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import SearchBar from "./SearchBar";
@@ -19,7 +19,13 @@ export default function CategoryGrid({ categories }: { categories: Category[] })
   const router = useRouter();
   const [loadingFolderId, setLoadingFolderId] = useState<string | null>(null);
   const [query, setQuery] = useState("");
-  const [nicheFirst, setNicheFirst] = useState(false);
+  const [navigatingNiche, setNavigatingNiche] = useState(false);
+
+  // Defensive reset — guarantees a clean search box whenever this page is (re)entered,
+  // even if Next's router cache ever restores prior component state on back-navigation.
+  useEffect(() => {
+    setQuery("");
+  }, []);
 
   const placeholders = categories.map((c) => c.name);
 
@@ -27,10 +33,7 @@ export default function CategoryGrid({ categories }: { categories: Category[] })
     ? categories.filter((c) => c.name.toLowerCase().includes(query.toLowerCase()))
     : categories;
 
-  // When the toggle is on, show only the niche-specific category — hide everything else.
-  const displayed = nicheFirst
-    ? filtered.filter((c) => c.name.toLowerCase().includes(NICHE_CATEGORY_NAME))
-    : filtered;
+  const nicheCategory = categories.find((c) => c.name.toLowerCase().includes(NICHE_CATEGORY_NAME));
 
   async function handleOpenFolder(folderId: string) {
     setLoadingFolderId(folderId);
@@ -41,6 +44,18 @@ export default function CategoryGrid({ categories }: { categories: Category[] })
     ]);
     router.push(`/work/${folderId}`);
     setLoadingFolderId(null);
+  }
+
+  async function handleNicheClick() {
+    if (!nicheCategory || navigatingNiche) return;
+    setQuery("");
+    setNavigatingNiche(true);
+    const supabase = createClient();
+    await Promise.all([
+      supabase.from("folders").select("id, name, sort_order").eq("parent_id", nicheCategory.id).order("sort_order", { ascending: true }),
+      supabase.from("files").select("id, name, original_name, file_url, mime_type, size, created_at").eq("folder_id", nicheCategory.id).order("created_at", { ascending: true }),
+    ]);
+    router.push(`/work/${nicheCategory.id}`);
   }
 
   if (categories.length === 0) {
@@ -54,50 +69,66 @@ export default function CategoryGrid({ categories }: { categories: Category[] })
           value={query}
           onChange={setQuery}
           placeholders={placeholders.length ? placeholders : ["Search folders..."]}
-          disabled={nicheFirst}
-          disabledMessage="Turn off the Niche Systems toggle to search"
+          disabled={navigatingNiche}
+          disabledMessage="Opening Niche-Specific Systems…"
         />
 
         <button
-          onClick={() => {
-            setQuery("");
-            setNicheFirst((v) => !v);
-          }}
-          className="flex h-11 shrink-0 items-center gap-2 rounded-full px-4 text-xs font-medium transition-all duration-300"
+          onClick={handleNicheClick}
+          disabled={navigatingNiche}
+          className="flex h-11 shrink-0 items-center gap-2 rounded-full px-4 text-xs font-semibold transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-70"
           style={{
-            background: nicheFirst ? "rgba(0,152,253,0.15)" : "rgba(255,255,255,0.03)",
-            border: nicheFirst ? "1px solid rgba(0,152,253,0.4)" : "1px solid rgba(255,255,255,0.2)",
-            backdropFilter: "blur(20px)",
-            color: nicheFirst ? "#0098FD" : "rgba(255,255,255,0.7)",
+            background: "rgba(0,152,253,0.18)",
+            border: "1px solid rgba(0,152,253,0.4)",
+            backdropFilter: "blur(10px)",
+            color: "#fff",
           }}
         >
-          <span
-            className="relative inline-flex h-4 w-7 shrink-0 items-center rounded-full transition-colors duration-300"
-            style={{ background: nicheFirst ? "#0098FD" : "rgba(255,255,255,0.2)" }}
-          >
+          <span className="relative inline-flex h-4 w-7 shrink-0 items-center rounded-full" style={{ background: "rgba(0,152,253,0.35)" }}>
             <span
-              className="inline-block h-3 w-3 rounded-full bg-white transition-transform duration-300"
-              style={{ transform: nicheFirst ? "translateX(14px)" : "translateX(2px)" }}
+              className="inline-block h-3 w-3 rounded-full transition-transform duration-300"
+              style={{ background: "#0098FD", transform: navigatingNiche ? "translateX(14px)" : "translateX(2px)" }}
             />
           </span>
           Niche Systems
         </button>
 
         <p className="ml-auto shrink-0 text-sm text-gray-500">
-          {displayed.length} {displayed.length === 1 ? "category" : "categories"}
+          {filtered.length} {filtered.length === 1 ? "category" : "categories"}
           {query && ` for "${query}"`}
         </p>
       </div>
 
-      {displayed.length === 0 ? (
-        <p className="text-gray-500 text-sm">
-          {nicheFirst
-            ? "No niche-specific systems category found."
-            : `No folders match "${query}"`}
-        </p>
+      {navigatingNiche ? (
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((i) => {
+            const titleWidths = ["w-2/3", "w-1/2", "w-3/5", "w-1/2", "w-3/4", "w-1/2", "w-2/3", "w-3/5", "w-1/2"];
+            const subWidths = ["w-1/2", "w-2/5", "w-1/3", "w-2/5", "w-1/2", "w-1/3", "w-2/5", "w-1/2", "w-1/3"];
+            return (
+              <div
+                key={i}
+                className="animate-pulse rounded-[20px] p-6 flex flex-col gap-4"
+                style={{
+                  background: "rgba(255,255,255,0.03)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  animationDelay: `${(i % 3) * 0.15}s`,
+                }}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 shrink-0 rounded-xl" style={{ background: "rgba(255,255,255,0.08)" }} />
+                  <div className={`h-4 ${titleWidths[i]} rounded`} style={{ background: "rgba(255,255,255,0.08)" }} />
+                </div>
+                <div className={`h-3 ${subWidths[i]} rounded`} style={{ background: "rgba(255,255,255,0.06)" }} />
+                <div className="mt-auto h-10 w-full rounded-xl" style={{ background: "rgba(0,152,253,0.12)" }} />
+              </div>
+            );
+          })}
+        </div>
+      ) : filtered.length === 0 ? (
+        <p className="text-gray-500 text-sm">No folders match &quot;{query}&quot;</p>
       ) : (
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {displayed.map((cat) => (
+      {filtered.map((cat) => (
         <div
           key={cat.id}
           className="relative rounded-[20px] p-6 flex flex-col gap-4 transition-all duration-300"

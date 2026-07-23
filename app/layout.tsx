@@ -26,6 +26,9 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: "VA Force - AI Powered Business Automation & CRM Solutions",
   description: "VA Force helps businesses scale faster with powerful automation, AI systems, and custom software integrations. From GoHighLevel bots to advanced AI workflows.",
+  icons: {
+    icon: "https://assets.cdn.filesafe.space/XgKDe6KOSdIG9IWlQxy3/media/696903167a8acbba4ceb05b8.png",
+  },
 };
 
 export default function RootLayout({

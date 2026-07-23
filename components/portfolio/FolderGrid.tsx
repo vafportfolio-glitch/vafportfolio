@@ -3,12 +3,20 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import SearchBar from "./SearchBar";
 
 interface Folder { id: string; name: string; sort_order: number }
 
 export default function FolderGrid({ folders }: { folders: Folder[] }) {
   const router = useRouter();
   const [loadingFolderId, setLoadingFolderId] = useState<string | null>(null);
+  const [query, setQuery] = useState("");
+
+  const placeholders = folders.map((f) => f.name);
+
+  const filtered = query.trim()
+    ? folders.filter((f) => f.name.toLowerCase().includes(query.toLowerCase()))
+    : folders;
 
   async function handleOpenFolder(folderId: string) {
     setLoadingFolderId(folderId);
@@ -22,8 +30,22 @@ export default function FolderGrid({ folders }: { folders: Folder[] }) {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {folders.map((folder) => (
+    <div>
+      {folders.length > 1 && (
+        <div className="mb-6">
+          <SearchBar
+            value={query}
+            onChange={setQuery}
+            placeholders={placeholders.length ? placeholders : ["Search folders..."]}
+          />
+        </div>
+      )}
+
+      {filtered.length === 0 ? (
+        <p className="text-sm text-gray-500">No folders match &quot;{query}&quot;</p>
+      ) : (
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {filtered.map((folder) => (
         <div
           key={folder.id}
           className="relative rounded-[20px] p-6 flex flex-col gap-4"
@@ -74,7 +96,9 @@ export default function FolderGrid({ folders }: { folders: Folder[] }) {
             )}
           </button>
         </div>
-      ))}
+        ))}
+      </div>
+      )}
     </div>
   );
 }
