@@ -77,7 +77,7 @@ export default function CtaSection() {
           </div>
         </div>
       </div>
-      <Script src="https://link.vaforce.us/js/form_embed.js" strategy="lazyOnload" />
+      <Script src="https://link.vaforce.us/js/form_embed.js" strategy="afterInteractive" />
     </section>
   );
 }
