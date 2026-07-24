@@ -8,6 +8,7 @@ const VIDEOS = [
   "https://storage.googleapis.com/msgsndr/XgKDe6KOSdIG9IWlQxy3/media/695ed1603561601c795548c8.mp4",
   "https://storage.googleapis.com/msgsndr/XgKDe6KOSdIG9IWlQxy3/media/695ed1c0a0a4848825238967.mp4",
   "https://storage.googleapis.com/msgsndr/XgKDe6KOSdIG9IWlQxy3/media/695ed17cc98330d2c8317094.mp4",
+  "https://assets.cdn.filesafe.space/XgKDe6KOSdIG9IWlQxy3/media/6a63d11cfb06386ede25bb4e.mp4",
 ];
 
 const TEXT_TESTIMONIALS = [
