@@ -11,7 +11,6 @@ const links = [
   { id: "home", label: "Home" },
   { id: "work", label: "Work" },
   { id: "testimonials", label: "Testimonials" },
-  { id: "contact", label: "Connect" },
 ];
 
 export default function Navbar() {
