@@ -177,14 +177,6 @@ export default function TypingHero() {
                 }}
               >
                 {typedText}
-                <span
-                  className="inline-block animate-pulse ml-1"
-                  style={{
-                    width: "0.06em",
-                    height: "0.75em",
-                    background: "currentColor",
-                  }}
-                />
               </span>
             </span>
           </motion.h1>
