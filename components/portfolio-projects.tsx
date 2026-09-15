@@ -5,20 +5,6 @@ import ProjectCard, { ProjectCardProps } from "@/components/project-card";
 
 const projects: ProjectCardProps[] = [
   {
-    tags: ["CRM", "Sales Automation", "Lead Management", "Workflow Automation"],
-    image: "https://res.cloudinary.com/k73rnh8k/image/upload/v1784756653/oeps6ardt6tci1qbhqn1.png",
-    eyebrow: "SALES ENGINE",
-    title: "Enertia Flow",
-    description: "A CRM and deal-flow automation platform that captures, nurtures, and converts leads through automated multi-channel communication and sales pipelines.",
-    duration: "Ongoing",
-    stats: [
-      { icon: "users", value: "Auto-Capture", label: "MORE LEADS CONVERTED AUTOMATICALLY" },
-      { icon: "eye", value: "Multi-Channel", label: "SMS · EMAIL · WHATSAPP · AI VOICE" },
-      { icon: "trending", value: "Predictable", label: "A REPEATABLE, SCALABLE SALES ENGINE" },
-    ],
-    quote: "Turn your leads into loyal customers with an automated sales engine that captures, nurtures, and converts opportunities 24/7.",
-  },
-  {
     tags: ["Self-Service Kiosk", "Visitor Management System", "Front Desk Automation", "GoHighLevel"],
     image: "https://res.cloudinary.com/k73rnh8k/image/upload/v1784757269/nzrhqkqzk5hapsirqnwu.png",
     eyebrow: "SELF-SERVICE KIOSK",
@@ -83,21 +69,29 @@ export default function PortfolioProjects() {
 
         {/* Cards grid */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-          {projects.map((project, i) => (
-            <motion.div
-              key={project.title}
-              {...(reduce
-                ? {}
-                : {
-                    initial: { opacity: 0, y: 40 },
-                    whileInView: { opacity: 1, y: 0 },
-                    viewport: { once: true, amount: 0.15 },
-                    transition: { duration: 0.65, delay: (i % 2) * 0.1, ease: [0.16, 1, 0.3, 1] },
-                  })}
-            >
-              <ProjectCard {...project} />
-            </motion.div>
-          ))}
+          {projects.map((project, i) => {
+            // If this is the last card and the total count is odd, it's alone in
+            // its row — give it the full row width and switch it to the
+            // horizontal (image left / content right) layout.
+            const isTrailingOdd = projects.length % 2 !== 0 && i === projects.length - 1;
+
+            return (
+              <motion.div
+                key={project.title}
+                className={isTrailingOdd ? "md:col-span-2" : ""}
+                {...(reduce
+                  ? {}
+                  : {
+                      initial: { opacity: 0, y: 40 },
+                      whileInView: { opacity: 1, y: 0 },
+                      viewport: { once: true, amount: 0.15 },
+                      transition: { duration: 0.65, delay: (i % 2) * 0.1, ease: [0.16, 1, 0.3, 1] },
+                    })}
+              >
+                <ProjectCard {...project} horizontal={isTrailingOdd} />
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* View All Projects button */}
