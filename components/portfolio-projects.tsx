@@ -5,7 +5,7 @@ import ProjectCard, { ProjectCardProps } from "@/components/project-card";
 
 const projects: ProjectCardProps[] = [
   {
-    tags: ["Self-Service Kiosk", "Visitor Management System", "Front Desk Automation", "GoHighLevel"],
+    tags: ["Self-Service Kiosk", "Visitor Management System", "GoHighLevel"],
     image: "https://res.cloudinary.com/k73rnh8k/image/upload/v1784757269/nzrhqkqzk5hapsirqnwu.png",
     eyebrow: "SELF-SERVICE KIOSK",
     title: "Kiosk Check-In System",
