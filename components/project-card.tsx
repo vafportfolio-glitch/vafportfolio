@@ -17,6 +17,9 @@ export interface ProjectCardProps {
   duration: string;
   stats: [ProjectStat, ProjectStat, ProjectStat];
   quote: string;
+  /** When true, renders image on the left and content on the right (md+ screens).
+   * Use this for a card that ends up alone in its row and spans full width. */
+  horizontal?: boolean;
 }
 
 const icons = {
@@ -51,6 +54,7 @@ export default function ProjectCard({
   duration,
   stats,
   quote,
+  horizontal = false,
 }: ProjectCardProps) {
   const [mediaHovered, setMediaHovered] = useState(false);
   const [cardHovered, setCardHovered] = useState(false);
@@ -69,7 +73,7 @@ export default function ProjectCard({
       onMouseLeave={() => setCardHovered(false)}
     >
       {/* Tags */}
-      <div className="flex gap-2.5 px-[22px] pt-[18px]">
+      <div className="flex gap-2.5 px-[22px] pt-[18px] flex-wrap">
         {tags.map((t) => (
           <span
             key={t}
@@ -81,58 +85,79 @@ export default function ProjectCard({
         ))}
       </div>
 
-      {/* Media */}
-      <div
-        className="relative mx-[22px] mt-4 rounded-[14px] overflow-hidden"
-        style={{ aspectRatio: "16/9", background: "#0d1a0d" }}
-        onMouseEnter={() => setMediaHovered(true)}
-        onMouseLeave={() => setMediaHovered(false)}
-      >
-        {/* photo lifts on media hover */}
+      {/* Media + Body wrapper — becomes a row on md+ when horizontal */}
+      <div className={horizontal ? "md:flex md:items-stretch md:gap-6" : ""}>
+        {/* Media */}
         <div
-          className="absolute inset-0 transition-transform duration-300 ease-out will-change-transform"
-          style={{ transform: mediaHovered ? "translateY(-8px)" : "translateY(0)" }}
+          className={
+            horizontal
+              ? "relative mx-[22px] mt-4 rounded-[14px] overflow-hidden md:mt-[18px] md:mb-[18px] md:w-[42%] md:flex-shrink-0"
+              : "relative mx-[22px] mt-4 rounded-[14px] overflow-hidden"
+          }
+          style={{ aspectRatio: "16/9", background: "#0d1a0d" }}
+          onMouseEnter={() => setMediaHovered(true)}
+          onMouseLeave={() => setMediaHovered(false)}
         >
-          <img src={image} alt={title} className="w-full h-full object-contain object-center block" />
-        </div>
-      </div>
-
-      {/* Body */}
-      <div className="px-[26px] pt-[22px] pb-[26px]">
-        <div className="flex justify-between items-start">
-          <p
-            className="text-[12px] font-extrabold tracking-[0.06em] mb-1.5"
-            style={{ color: "#0098FD" }}
+          {/* photo lifts on media hover */}
+          <div
+            className="absolute inset-0 transition-transform duration-300 ease-out will-change-transform"
+            style={{ transform: mediaHovered ? "translateY(-8px)" : "translateY(0)" }}
           >
-            {eyebrow}
-          </p>
-          <span className="text-[13px] text-[#9a94a3] whitespace-nowrap">{duration}</span>
+            <img src={image} alt={title} className="w-full h-full object-contain object-center block" />
+          </div>
         </div>
 
-        <h3 className="text-[26px] font-extrabold tracking-[0.01em] text-white mb-3">{title}</h3>
-        <p className="text-[14.5px] leading-[1.55] text-[#9a94a3] mb-[22px] max-w-[520px]">{description}</p>
-
-        {/* Stats */}
+        {/* Body */}
         <div
-          className="grid grid-cols-3 gap-2 rounded-[14px] px-2.5 py-[22px] mb-[22px]"
-          style={{ background: "#0a120a", border: "1px solid #1a2e1a" }}
+          className={
+            horizontal
+              ? "px-[26px] pt-[22px] pb-[26px] md:flex-1 md:min-w-0"
+              : "px-[26px] pt-[22px] pb-[26px]"
+          }
         >
-          {stats.map((s) => (
-            <div key={s.label} className="flex flex-col items-center text-center px-1.5">
-              {icons[s.icon]}
-              <div className="text-[19px] font-extrabold text-white mb-1">{s.value}</div>
-              <div className="text-[10.5px] font-bold tracking-[0.04em] text-[#9a94a3]">{s.label}</div>
-            </div>
-          ))}
-        </div>
+          <div className="flex justify-between items-start">
+            <p
+              className="text-[12px] font-extrabold tracking-[0.06em] mb-1.5"
+              style={{ color: "#0098FD" }}
+            >
+              {eyebrow}
+            </p>
+            <span className="text-[13px] text-[#9a94a3] whitespace-nowrap">{duration}</span>
+          </div>
 
-        {/* Quote */}
-        <p
-          className="text-[14px] italic leading-[1.6] text-[#c9c3ce] pl-4"
-          style={{ borderLeft: "3px solid #FEC503" }}
-        >
-          {quote}
-        </p>
+          <h3 className="text-[26px] font-extrabold tracking-[0.01em] text-white mb-3">{title}</h3>
+          <p
+            className={
+              horizontal
+                ? "text-[14.5px] leading-[1.55] text-[#9a94a3] mb-[22px] max-w-[520px] md:max-w-none"
+                : "text-[14.5px] leading-[1.55] text-[#9a94a3] mb-[22px] max-w-[520px]"
+            }
+          >
+            {description}
+          </p>
+
+          {/* Stats */}
+          <div
+            className="grid grid-cols-3 gap-2 rounded-[14px] px-2.5 py-[22px] mb-[22px]"
+            style={{ background: "#0a120a", border: "1px solid #1a2e1a" }}
+          >
+            {stats.map((s) => (
+              <div key={s.label} className="flex flex-col items-center text-center px-1.5">
+                {icons[s.icon]}
+                <div className="text-[19px] font-extrabold text-white mb-1">{s.value}</div>
+                <div className="text-[10.5px] font-bold tracking-[0.04em] text-[#9a94a3]">{s.label}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Quote */}
+          <p
+            className="text-[14px] italic leading-[1.6] text-[#c9c3ce] pl-4"
+            style={{ borderLeft: "3px solid #FEC503" }}
+          >
+            {quote}
+          </p>
+        </div>
       </div>
     </div>
   );
