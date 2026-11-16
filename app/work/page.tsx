@@ -2,6 +2,9 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import CategoryGrid from "@/components/portfolio/CategoryGrid";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function WorkPage() {
   const supabase = createClient();
   const { data: rawCategories } = await supabase
